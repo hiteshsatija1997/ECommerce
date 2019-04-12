@@ -105,7 +105,6 @@ app.post('/cart', async (request, response) => {
             productId:request.body.productId
         }
     })
-   console.log(result.quantity);
     if(result==null){
     try {
         console.log("in if")
