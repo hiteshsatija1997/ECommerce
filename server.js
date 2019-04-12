@@ -9,7 +9,9 @@ app.use('/', express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extende: true }));
 
-app.listen(8800);
+const port=process.env.port || 8800;
+
+app.listen(port);
 
 //
 //   vendor
