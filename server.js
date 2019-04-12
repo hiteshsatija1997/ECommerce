@@ -9,9 +9,9 @@ app.use('/', express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extende: true }));
 
-const port=process.env.port || 8800;
+const port=process.env.PORT || 8800;
 
-app.listen(port);
+
 
 //
 //   vendor
@@ -230,3 +230,6 @@ app.get('/user/:username', async (request, response) => {
 
     response.send({ success: true, uid: User.id });
 })
+
+
+app.listen(port);
