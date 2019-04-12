@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Product</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- <link rel='stylesheet' type='text/css' media='screen' href='style.css'> -->
+    <script src='jquery.js'></script>
+    <script src='vendor.js'></script>
+    <script src='product.js'></script>
+</head>
+<body>
+    <div>
+        <div>
+            <h3>ADD PRODUCT</h3>
+        </div>
+        <div>
+            <input placeholder="Name" id='inputProductName'>
+            <br>
+            <input placeholder="price(in Rs.)" id='inputProductPrice'>
+            <br>
+            <select aria-placeholder="brand" id='selectProductVendor' ></select>
+            <br>
+            <input id="inputProductQuantity" type='number' min="1" max="10" placeholder="qty">
+            <br>
+            <button id ="btnAddProduct">ADD</button> 
+            <button onclick="location.href='http://localhost:8800/shopping.html'" type="button">
+                buy Product</button>
+        </div> 
+
+        <div>
+            <table id="productList" border='1'>
+                <thead>
+                    <th>s.no</th>
+                    <th>product id</th>
+                    <th>Name</th>
+                    <th>Vendor</th>
+                    <th>Price</th>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
