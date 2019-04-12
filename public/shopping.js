@@ -9,6 +9,8 @@ $(() => {
         $.get(`/user/${username}`, (data) => {
 
             if (data.success) {
+                $('#welcome').text(`welcome ${username}`)
+                
                 alert('logged in');
                 refreshCart(data.uid);
                 refreshShoppingList(data.uid);
