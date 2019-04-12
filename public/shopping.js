@@ -14,7 +14,7 @@ $(() => {
                 refreshShoppingList(data.uid);
             } else {
                 $('#input-username').val('');
-                alert('user not found');
+                alert('user not found... Please add new user or log in via\'hitesh\'');
             }
         })
     })
@@ -62,7 +62,7 @@ function refreshCart(uid) {
             cartList.append(`<tr>
             <td>${i++}</td>
            <td>${d.product.name}</td>
-            <td>${d.product.vendorId}</td>
+            <td>${d.product.vendor.name}</td>
            <td>${d.product.price}
             <td><input type="button" value="-" id='del${d.product.id}' onclick=decrease(${d.product.id},${uid})>
             ${d.quantity}

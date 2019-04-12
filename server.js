@@ -9,7 +9,7 @@ app.use('/', express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extende: true }));
 
-const port=process.env.PORT || 8800;
+const port = process.env.PORT || 8800;
 
 
 
@@ -91,7 +91,10 @@ app.get('/cart/:id', async (request, response) => {
     let cartdata = await cartItems.findAll({
         where: {
             userId: request.params.id
-        }, include: [product]
+        }, include: [{
+            model: product,
+            include: [vendor]
+        }]
 
     });
     console.log('@################@@@@@@@@@@@@@@')
@@ -99,32 +102,33 @@ app.get('/cart/:id', async (request, response) => {
 })
 
 app.post('/cart', async (request, response) => {
-   let result=await cartItems.findOne({
-        where:{
-            userId:request.body.userId,
-            productId:request.body.productId
+    let result = await cartItems.findOne({
+        where: {
+            userId: request.body.userId,
+            productId: request.body.productId
         }
     })
-    if(result==null){
-    try {
-        console.log("in if")
-        await cartItems.create({
-            productId: request.body.productId,
-            userId: request.body.userId
+    if (result == null) {
+        try {
+            console.log("in if")
+            await cartItems.create({
+                productId: request.body.productId,
+                userId: request.body.userId
 
-        })
-        response.send({ success: true });
-    } catch (e) {
-        response.send({ success: false });
-    }}else{
+            })
+            response.send({ success: true });
+        } catch (e) {
+            response.send({ success: false });
+        }
+    } else {
         try {
             await cartItems.increment({
                 quantity: 1
             }, {
-                where:{
-                    userId:request.body.userId,
-                    productId:request.body.productId
-                }
+                    where: {
+                        userId: request.body.userId,
+                        productId: request.body.productId
+                    }
                 })
             response.send({ success: true })
         } catch{
@@ -196,7 +200,7 @@ app.post('/cartitemsdec', async (req, res) => {
                 productId: req.body.prid,
                 userId: req.body.usid
             }
-            
+
         })
         res.send({ success: true })
     }
@@ -225,7 +229,9 @@ app.get('/user/:username', async (request, response) => {
         }
     });
 
-    // console.log(User.id);
+    if (User == null) {
+        response.send({ success: false })
+    }
 
     response.send({ success: true, uid: User.id });
 })

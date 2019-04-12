@@ -15,7 +15,6 @@ $(() => {
                     alert('added')
                     $('#inputProductName').val('');
                     $('#inputProductPrice').val('');
-                    $('#selectProductVendor').val('');
                     $('#inputProductQuantity').val('')
                     refreshProductList();
                 }else{
